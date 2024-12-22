@@ -1,0 +1,25 @@
+ticker: PEP
+peers:
+  # custom: null
+  # n_competitors: 5
+  custom:
+    KO:
+      weight: 0.5
+    MNST:
+      weight: 0.25
+    KDP:
+      weight: 0.25
+financial_weights:
+  income:
+    growth: 0.6
+    peers: 0.4
+    total: 0.4
+  balance:
+    total: 0.3
+  cash_flow:
+    total: 0.3
+multiples_weights: 
+  pe_ratio: 0.25
+  ps_ratio: 0.25
+  pgp_ratio: 0.25
+  pfcf_ratio: 0.25

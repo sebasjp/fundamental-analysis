@@ -1,0 +1,13 @@
+ticker: NKE
+peers:
+  custom: null
+  n_competitors: 5
+financial_weights:
+  income:
+    growth: 0.5
+    peers: 0.5
+multiples_weights: 
+  pe_ratio: 0.25
+  ps_ratio: 0.25
+  pgp_ratio: 0.25
+  pfcf_ratio: 0.25
