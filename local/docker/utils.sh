@@ -11,7 +11,7 @@ then
 
     printf "${GREEN}Starting development environment${COLOR_OFF}\n"
     docker compose -f docker-compose.yaml up -d --build
-    sudo chmod -R go+w ../
+    sudo chmod -R go+w ../../
 
 elif [ $1 == '--close_dev' ]
 then

@@ -6,7 +6,7 @@ services:
       dockerfile: ./Dockerfile
     container_name: dev_container
     volumes:
-      - ..:/workdir
+      - ../..:/workdir
       - /tmp/.X11-unix:/tmp/.X11-unix # para generar ventana de graficos (matplotlib, opencv, etc.)
     ports:
       - 8889:8888
