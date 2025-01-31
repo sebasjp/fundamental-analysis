@@ -3,8 +3,8 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - 'local/'
-      - 'nuevoproceso.ipynb'
+      - 'local/**'
+      - '**/*.ipynb'
   workflow_dispatch:
 
 jobs:
