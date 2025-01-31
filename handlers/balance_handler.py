@@ -181,11 +181,10 @@ def process_balance_general(
     """
     kpis_balance = calculate_kpis_balance_general(
         ticker=ticker, 
-        income_stmt_complete=income_stmt_complete, 
-        kpis=BalanceKpis.ANNUAL
+        income_stmt_complete=income_stmt_complete
     )
     score_balance = score_balance_general(kpis_balance)
 
-    response = {"balance": kpis_balance, "score_final": score_balance}
+    response = {**kpis_balance, "score_final": score_balance}
 
     return response
