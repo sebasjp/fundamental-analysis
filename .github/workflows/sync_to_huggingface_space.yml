@@ -15,6 +15,10 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+      - name: Change to backend dir
+        run: cd backend/
+      - name: Watch files in dir
+        run: ls
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
