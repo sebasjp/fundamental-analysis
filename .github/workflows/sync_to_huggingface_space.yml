@@ -24,22 +24,14 @@ jobs:
       - name: Install Hugging Face Hub
         run: pip install huggingface_hub
 
-      - name: Authenticate with Hugging Face
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}  # Store Hugging Face token in GitHub secrets
-        run: huggingface-cli login --token $HF_TOKEN
-
       - name: Push folder to Hugging Face
         env:
-          EMAIL: ${{ secrets.EMAIL }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}  # Store Hugging Face token in GitHub secrets
+          # EMAIL: ${{ secrets.EMAIL }}
         run: |
-          folder_name="backend"  # Change to the folder you want to upload
-          repo_name="app_valuation_company"  # Change to the name of the repo on Hugging Face
+          huggingface-cli login --token $HF_TOKEN
           git lfs install
-          git init
-          git remote add origin_hf https://huggingface.co/spaces/sebasjp/${repo_name}
-          git config user.email "$EMAIL"
-          git config user.name "sebasjp"
-          git add ${folder_name}/*  # Only add files from the folder
-          git commit -m "Upload folder to Hugging Face"
-          git push origin_hf main  # Push to the main branch on Hugging Face
+          git clone git@hf.co:spaces/sebasjp/app_valuation_company
+          cp -R backend/ app_valuation_company/
+          cd app_valuation_company
+          git push origin main
