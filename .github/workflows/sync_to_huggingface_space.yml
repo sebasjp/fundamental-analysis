@@ -33,9 +33,6 @@ jobs:
       - name: Push folder to Hugging Face
         env:
           EMAIL: ${{ secrets.EMAIL }}
-        run: |          
-          git config user.email "$EMAIL"
-          git config user.name "sebasjp"
-          git add .
-          git commit -m "GitHub Bot Changes"
-          git push origin main
+        run: |  
+          echo "---------"
+          ls -a 
