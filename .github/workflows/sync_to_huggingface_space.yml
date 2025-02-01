@@ -33,5 +33,7 @@ jobs:
           git lfs install
           git config user.email "$EMAIL"
           git config user.name "sebasjp"
-          git clone https://sebasjp:$HF_TOKEN@huggingface.co/spaces/sebasjp/app_valuation_company main
+          git clone https://sebasjp:$HF_TOKEN@huggingface.co/spaces/sebasjp/app_valuation_company
+          ls
+          cd app_valuation_company
           ls
