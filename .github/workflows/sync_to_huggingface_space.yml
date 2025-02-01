@@ -27,11 +27,13 @@ jobs:
       - name: Push folder to Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}  # Store Hugging Face token in GitHub secrets
-          # EMAIL: ${{ secrets.EMAIL }}
+          EMAIL: ${{ secrets.EMAIL }}
         run: |
           huggingface-cli login --token $HF_TOKEN
           git lfs install
-          git clone git@hf.co:spaces/sebasjp/app_valuation_company
+          git config user.email "$EMAIL"
+          git config user.name "sebasjp"
+          git clone https://sebasjp:$HF_TOKEN@huggingface.co/spaces/sebasjp/app_valuation_company main
           cp -R backend/ app_valuation_company/
           cd app_valuation_company
-          git push origin main
+          git push -f origin main
