@@ -34,6 +34,4 @@ jobs:
           git config user.email "$EMAIL"
           git config user.name "sebasjp"
           git clone https://sebasjp:$HF_TOKEN@huggingface.co/spaces/sebasjp/app_valuation_company main
-          cp -R backend/ app_valuation_company/
-          cd app_valuation_company
-          git push -f origin main
+          ls
