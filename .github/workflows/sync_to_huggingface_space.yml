@@ -15,10 +15,27 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - name: Push to hub
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Install Hugging Face Hub
+        run: pip install huggingface_hub
+
+      - name: Authenticate with Hugging Face
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        working-directory: ./backend
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}  # Store Hugging Face token in GitHub secrets
+        run: huggingface-cli login --token $HF_TOKEN
+
+      - name: Push folder to Hugging Face
         run: |
-          ls
-          git push -f https://sebasjp:$HF_TOKEN@huggingface.co/spaces/sebasjp/app_valuation_company main
+          folder_name="backend"  # Change to the folder you want to upload
+          repo_name="app_valuation_company"  # Change to the name of the repo on Hugging Face
+          git lfs install
+          git init
+          git remote add origin https://huggingface.co/${repo_name}.git
+          git add ${folder_name}/*  # Only add files from the folder
+          git commit -m "Upload folder to Hugging Face"
+          git push origin main  # Push to the main branch on Hugging Face
