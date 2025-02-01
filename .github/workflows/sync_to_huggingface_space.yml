@@ -39,5 +39,4 @@ jobs:
           rm -rf backend/ local/ .github/
           ls -a
           echo "----"
-          git lfs install
-          remote -v
+          git remote -v
