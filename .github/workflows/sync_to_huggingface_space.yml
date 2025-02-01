@@ -2,9 +2,8 @@ name: Sync to Hugging Face hub
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - 'local/**'
-      - '**/*.ipynb'
+    paths:
+      - 'backend/**'
   workflow_dispatch:
 
 jobs:
@@ -32,7 +31,7 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
         run: |
           cd app_valuation_company
-          rm -f .gitignore
+          echo "======> Files in repository <======"
           ls -a
           git config user.email "$EMAIL"
           git config user.name "sebasjp"
