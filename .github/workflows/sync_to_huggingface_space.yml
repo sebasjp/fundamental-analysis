@@ -35,7 +35,7 @@ jobs:
           repo_name="app_valuation_company"  # Change to the name of the repo on Hugging Face
           git lfs install
           git init
-          git remote add origin https://huggingface.co/${repo_name}.git
+          git remote add origin_hf https://huggingface.co/${repo_name}.git
           git add ${folder_name}/*  # Only add files from the folder
           git commit -m "Upload folder to Hugging Face"
-          git push origin main  # Push to the main branch on Hugging Face
+          git push origin_hf main  # Push to the main branch on Hugging Face
