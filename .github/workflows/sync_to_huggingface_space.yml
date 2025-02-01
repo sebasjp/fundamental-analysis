@@ -26,13 +26,16 @@ jobs:
       - name: Updating backend files
         run: |
           yes | cp -rf backend/* app_valuation_company/
-          cd app_valuation_company
-          rm -f .gitignore
-          ls -a
 
       - name: Push folder to Hugging Face
         env:
           EMAIL: ${{ secrets.EMAIL }}
-        run: |  
-          echo "---------"
-          ls -a 
+        run: |
+          cd app_valuation_company
+          rm -f .gitignore
+          ls -a
+          git config user.email "$EMAIL"
+          git config user.name "sebasjp"
+          git add .
+          git commit -m "GitHub Bot Changes"
+          git push origin main
