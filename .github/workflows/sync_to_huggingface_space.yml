@@ -31,11 +31,11 @@ jobs:
         run: |
           huggingface-cli login --token $HF_TOKEN
           git lfs install
-          git config user.email "$EMAIL"
-          git config user.name "sebasjp"
           git clone https://sebasjp:$HF_TOKEN@huggingface.co/spaces/sebasjp/app_valuation_company
           yes | cp -rf backend/* app_valuation_company/
           cd app_valuation_company
+          git config user.email "$EMAIL"
+          git config user.name "sebasjp"
           rm -rf backend/ local/ .github/
           ls -a
           echo "----"
