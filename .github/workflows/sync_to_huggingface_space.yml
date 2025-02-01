@@ -30,12 +30,16 @@ jobs:
         run: huggingface-cli login --token $HF_TOKEN
 
       - name: Push folder to Hugging Face
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
         run: |
           folder_name="backend"  # Change to the folder you want to upload
           repo_name="app_valuation_company"  # Change to the name of the repo on Hugging Face
           git lfs install
           git init
           git remote add origin_hf https://huggingface.co/${repo_name}.git
+          git config user.email "$EMAIL"
+          git config user.name "sebasjp"
           git add ${folder_name}/*  # Only add files from the folder
           git commit -m "Upload folder to Hugging Face"
           git push origin_hf main  # Push to the main branch on Hugging Face
