@@ -39,4 +39,7 @@ jobs:
           rm -rf backend/ local/ .github/
           ls -a
           echo "----"
-          git push -f origin main
+          git remote -v
+          git add .
+          git commit -m "GitHub Bot Changes"
+          git push origin main
