@@ -36,7 +36,7 @@ jobs:
           git clone https://sebasjp:$HF_TOKEN@huggingface.co/spaces/sebasjp/app_valuation_company
           yes | cp -rf backend/* app_valuation_company/
           cd app_valuation_company
-          rm -rf backend/ local/
-          ls
+          rm -rf backend/ local/ .github/
+          ls -a
           echo "----"
           remote -v
