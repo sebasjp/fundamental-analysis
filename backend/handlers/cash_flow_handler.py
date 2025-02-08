@@ -15,7 +15,7 @@ def process_cash_flow(ticker: str):
 
     response = {
         "cash_flow": cash_flow,
-        "detail_growth": cash_flow_growth,
+        # "detail_growth": cash_flow_growth,
         "score_final": score_cash_flow_growth
     }
     

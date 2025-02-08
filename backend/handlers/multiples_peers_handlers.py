@@ -55,8 +55,9 @@ def process_compare_multiples_peers(
 
     score_multiples_peers = score_multiples_peers.sort_values(ascending=False)
 
-    response = {}
-    response["detail_multiples"] = compare_multiples
-    response["score_final"] = score_multiples_peers
+    response = {
+        "score_final": score_multiples_peers, 
+        "detail_multiples": compare_multiples
+    }
 
     return response

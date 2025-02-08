@@ -14,38 +14,38 @@ def clean_kpi(x: str):
   return float(newx)
 
 
-def score_balance_general(kpis_balance: dict):
-  
-  months_operation = kpis_balance["months_operation"]
-  current_ratio = kpis_balance["current_ratio"]
-  quick_ratio = kpis_balance["quick_ratio"]
-  debt_ratio = kpis_balance["debt_ratio"]
-
-  # reglas de sanidad de una empresa
-  kpis_rules = {
-      "months_operation": {"var": months_operation, "val": 3},
-      "current_ratio": {"var": current_ratio, "val": 0.7},
-      "debt_ratio": {"var": debt_ratio, "val": 0.5}
-  }
-  if quick_ratio:
-    kpis_rules["quick_ratio"] = {"var": quick_ratio, "val": 0.7}
+def score_balance_general(kpis_rules: dict):
 
   score_balance = []
   for kpiname, info_dict in kpis_rules.items():
-    kpi = info_dict["var"]
-    rule = info_dict["val"]
+    kpi = info_dict["value"]
+    rule = info_dict["rule"]
     if kpi:
       if kpiname in ["debt_ratio"]:
-        score_balance += [1] if kpi<=rule else [0]
+        if kpi<=rule:
+          decision = "cumple"
+          score_balance += [1]
+        else:
+          decision = "no_cumple"
+          score_balance += [0]
       else:
-        score_balance += [1] if kpi>=rule else [0]
+        if kpi>=rule:
+          decision = "cumple"
+          score_balance += [1]
+        else:
+          decision = "no_cumple"
+          score_balance += [0]
+    else:
+      decision = None
+    
+    kpis_rules[kpiname] = {**kpis_rules[kpiname], "decision": decision}
 
   score_balance = 10*sum(score_balance)/len(score_balance)
 
   logging.info("=="*20)
   logging.info(f"Score final balance general - score_balance: {score_balance}")
 
-  return score_balance
+  return score_balance, kpis_rules
 
 
 def calculate_kpis_balance_general(
@@ -155,7 +155,7 @@ def calculate_kpis_balance_general(
   logging.info(f"Relación deuda vs activos - debt_ratio = total_debt/total_assets: {debt_ratio}")
 
   kpis_balance = {
-      "balance": balance,
+      # "balance": balance,
       "operation_expenses_month": operation_expenses_month,
       "cash": cash,
       "months_operation": months_operation,
@@ -183,8 +183,28 @@ def process_balance_general(
         ticker=ticker, 
         income_stmt_complete=income_stmt_complete
     )
-    score_balance = score_balance_general(kpis_balance)
+    # reglas de sanidad de una empresa
+    kpis_rules = {
+        "months_operation": {
+          "value": kpis_balance["months_operation"], 
+          "rule": 3
+        },
+        "current_ratio": {
+          "value": kpis_balance["current_ratio"], 
+          "rule": 0.7
+        },
+        "debt_ratio": {
+          "value": kpis_balance["debt_ratio"], 
+          "rule": 0.5
+        }
+    }
+    if kpis_balance["quick_ratio"]:
+      kpis_rules["quick_ratio"] = {
+        "value": kpis_balance["quick_ratio"], 
+        "rule": 0.7
+      }
+    score_balance, kpis_rules_decision = score_balance_general(kpis_rules)
 
-    response = {**kpis_balance, "score_final": score_balance}
+    response = {"score_final": score_balance, **kpis_rules_decision}
 
     return response

@@ -179,7 +179,7 @@ def process_income(
 
     # resultados del crecimiento
     response["income"]["score_stmt_growth"] = score_stmt_res_growth
-    response["income"]["detail_growth"] = stmt_res_growth
+    # response["income"]["detail_growth"] = stmt_res_growth
 
     # resultados de comparacion de margenes vs la competencia
     response["peers"] = response_margins["peers"]
