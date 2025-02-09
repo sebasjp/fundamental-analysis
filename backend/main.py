@@ -67,12 +67,12 @@ def execute_process(
 
     # response["financials"]["income"]["income_complete"] = response["financials"]["income"]["income_complete"].to_dict()
     response["financials"]["income"]["income"] = response["financials"]["income"]["income"].to_dict()
-    response["financials"]["income"]["detail_growth"] = response["financials"]["income"]["detail_growth"].to_dict()
+    # response["financials"]["income"]["detail_growth"] = response["financials"]["income"]["detail_growth"].to_dict()
 
     # response["financials"]["balance"]["balance"] = response["financials"]["balance"]["balance"].to_dict()
 
     response["financials"]["cash_flow"]["cash_flow"] = response["financials"]["cash_flow"]["cash_flow"].to_dict()
-    response["financials"]["cash_flow"]["detail_growth"] = response["financials"]["cash_flow"]["detail_growth"].to_dict()
+    # response["financials"]["cash_flow"]["detail_growth"] = response["financials"]["cash_flow"]["detail_growth"].to_dict()
 
     # response["price_historic"]["price"] = response["price_historic"]["price"].to_dict()
     response["price_competitors"]["detail_multiples"] = response["price_competitors"]["detail_multiples"].to_dict()
