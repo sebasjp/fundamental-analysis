@@ -1,0 +1,32 @@
+disclaimer: |
+  Tenga en cuenta que esta es una herramienta con fines académicos y no representa una recomendación de inversión.
+introduction: |
+  * El objetivo de la herramienta es proporcionar una calificación en tres diferentes dimensiones a una compañía que cotiza en bolsa.
+  * La primera dimensión es una calificación a la salud financiera de la empresa: ventas, utilidades y flujo de caja creciendo. Margenes superiores a la competencia.
+  * La segunda dimensión es una calificación del precio actual de la empresa vs su precio histórico (últimos 5 años), por medio de la evaluación de los ratios: P/E, P/S, P/GPG, P/FCF.
+  * La tercera dimensión es una calificación del precio actual de la empresa vs los competidores.
+  * Estas calificaciones están entre 0 y 10, donde más cercano a 0 indica un peor desempeño y entre más cercano a 10 representa un mejor desempeño.
+  * La información de cada compañía es extraida de la página https://stockanalysis.com/stocks/
+  * Los tickers de los competidores son extraidos de la página https://finviz.com/
+financial_weights: |
+  * Esta herramienta se basa en el análisis de los resultados que las empresas reportan: **Estado de resultados**, **Balance**, **Flujo de caja**.
+  * Para el caso de los **estado de resultados**, se revisa si la empresa se encuentra creciendo en ventas y utilidades, y además se comparan sus margenes con la competencia.
+  * Para ello, usted puede modificarle el peso que tendrá el analisis de crecimiento de la empresa vs el análisis de la comparación con la competencia.
+  * Tenga en cuenta que: Peso de crecimiento + Peso de competencia = 1
+competitors_weights: |
+  * Puede ingresar manualmente los tickers de los competidores con su respectivo peso en el análisis.
+  * Si no ingresa ningún competidor manualmente, la herramienta buscará los competidores por usted, solo debe indicar cuántos competidores buscar.
+multiples_weights: |
+  * En las dimensiones de precio, se utiliza los multiplos P/E, P/S, P/GP y P/FCF.
+  * Dependiendo de la empresa que esté analizando usted puede querer darle más peso a un multiplo en particular, lo puede hacer moviendo las barras de cada multiplo.
+  * Incluso puede anular la influencia de algún multiplo en particular asignandole un peso de 0.
+  * Tenga en cuenta que la suma de todos los pesos debe ser 1.
+detail_financial: |
+  * La salud financiera de la empresa se evalua en 3 aspectos: Estado de resultados (PyG), Balance general y Flujo de caja.
+  * En cada uno se determina un score, que en conjunto califican la salud financiera de la empresa.
+  * Cada columna representa los indicadores considerados para determinar la calificación de cada aspecto.
+detail_historic_price: |
+  * De cada ratio se evalua su valor actual, comparado con el mínimo y máximo histórico, teniendo en cuenta los ultimos 5 años.
+  * Entre más cercano se encuentre el valor actual al mínimo histórico, mejor calificada estará esta dimensión.
+detail_peers_price: |
+  * Se comparan los ratios con los competidores seleccionados. A menor ratio, la celda de la tabla tendrá un color verde más intenso.

@@ -4,3 +4,7 @@ pandas==2.2.0
 yfinance
 finvizfinance
 openpyxl
+streamlit
+plotly
+matplotlib
+seaborn
