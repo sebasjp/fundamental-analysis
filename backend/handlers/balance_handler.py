@@ -196,13 +196,12 @@ def process_balance_general(
         "debt_ratio": {
           "value": kpis_balance["debt_ratio"], 
           "rule": 0.5
+        },
+        "quick_ratio": {
+          "value": kpis_balance["quick_ratio"], 
+          "rule": 0.7
         }
     }
-    if kpis_balance["quick_ratio"]:
-      kpis_rules["quick_ratio"] = {
-        "value": kpis_balance["quick_ratio"], 
-        "rule": 0.7
-      }
     score_balance, kpis_rules_decision = score_balance_general(kpis_rules)
 
     response = {"score_final": score_balance, **kpis_rules_decision}
