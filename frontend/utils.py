@@ -1,3 +1,4 @@
+import os
 import yaml
 import json
 import requests
@@ -5,9 +6,12 @@ import pandas as pd
 import seaborn as sns
 
 
+url_backend = os.getenv("URL_BACKEND")
+
+
 def get_documentation():
 
-    with open("frontend/doc.yml") as stream:
+    with open("doc.yml") as stream:
         try:
             doc = yaml.safe_load(stream)
             return doc
@@ -31,13 +35,7 @@ def is_payload_ok(payload: dict):
 
 def request_data(payload: dict):
 
-    # with open("frontend/response.json") as stream:
-    #     try:
-    #         response = json.load(stream)
-    #     except yaml.YAMLError as exc:
-    #         print(exc)
-    url = "https://sebasjp-app-valuation-company.hf.space/api/analyze_company/"
-    response = requests.post(url, json=payload)
+    response = requests.post(url_backend, json=payload)
     response = json.loads(response.content)
     
     # ============== INCOME ================== #
